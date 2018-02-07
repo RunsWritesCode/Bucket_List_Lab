@@ -2,10 +2,12 @@ const express = require('express');
 const server = express();
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
+const cors = require('cors');
 
 server.use(bodyParser.json());
 server.use(express.static('client/build'));
 server.use(bodyParser.urlencoded({extended: true}));
+server.use(cors());
 
 MongoClient.connect('mongodb://localhost:27017', function(err, client) {
   if (err) {
